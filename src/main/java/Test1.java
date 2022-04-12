@@ -2,17 +2,20 @@ import org.apache.xerces.xs.StringList;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import com.codeborne.selenide.*;
-
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+
 
 import static com.codeborne.selenide.Selenide.*;
 
 public class Test1 {
-    String messageElement1 = "//msg-chats-list-item[@data-item-id='4177128197']";
-    String messageElement2 = "//msg-chats-list-item[@data-item-id='-82584779118262']";
-    User user1 = new User("89188704358", "lalalalol3395527", "Oksana", "Shalina", new ArrayList<>(Arrays.asList(messageElement1, messageElement2)));
+    String messageId1 = "//msg-chats-list-item[@data-item-id='4177128197']";
+    String messageId2 = "//msg-chats-list-item[@data-item-id='-82584779118262']";
+    String messageId3 = "//msg-chats-list-item[@data-item-id='53270269560']";
+    MessageElement messageElement1 = new MessageElement(messageId1);
+    MessageElement messageElement2 = new MessageElement(messageId2);
+    MessageElement messageElement3 = new MessageElement(messageId3);
+    User user1 = new User("OksanaShalina", "123", "Oksana", "Shalina", new ArrayList<>(Arrays.asList(messageElement1, messageElement2, messageElement3)));
 
     @Test
     public void loginTest() {
@@ -40,7 +43,7 @@ public class Test1 {
 
     }
     @Test
-    public void messageTest(){
+    public void messageSendTest(){
         Selenide.open("https://ok.ru");
         LoginPage loginPage = new LoginPage();
         MainPage mainPage = loginPage.login(user1);
@@ -49,5 +52,20 @@ public class Test1 {
         boolean result = messagePage.checkMessage(textMessageSent, 0);
         if(result == true) System.out.println("Message sent successfully");
         else System.out.println("Message sent unsuccessfully");
+    }
+
+    @Test
+    public void messageHideTest(){
+        Selenide.open("https://ok.ru");
+        LoginPage loginPage = new LoginPage();
+        MainPage mainPage = loginPage.login(user1);
+        MessagePage messagePage = mainPage.getMessagePage();
+        try {
+            messagePage.isLoaded();
+            messagePage.hideMessage(1);
+        }
+        catch (Error e){
+            System.out.println(e);
+        }
     }
 }

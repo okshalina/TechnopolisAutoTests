@@ -7,13 +7,13 @@ public class User {
     String password;
     String name;
     String surname;
-    List<String> xpathMessages = new ArrayList<String>();
-    User(String login, String password, String name, String surname, ArrayList<String> list){
+    List<MessageElement> messageElements = new ArrayList<MessageElement>();
+    User(String login, String password, String name, String surname, ArrayList<MessageElement> list){
         this.login=login;
         this.name=name;
         this.surname=surname;
         this.password=password;
-        this.xpathMessages = list;
+        this.messageElements = list;
     };
     String getFullNameFromUser(){
        return name + " " + surname;
