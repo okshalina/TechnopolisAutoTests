@@ -1,7 +1,7 @@
 package Message;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import test.BaseTest;
+import utils.BaseTest;
 import utils.User;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public class MessageTest extends BaseTest {
     String messageId1 = "4177128197";
     String messageId2 = "-82584779118262";
     String messageId3 = "53270269560";
-    User user1 = new User.UserBuilder("OksanaShalina", "lalalalol3395527").withMessageIds(new ArrayList<>(Arrays.asList(messageId1, messageId2, messageId3))).build();
+    User user1 = new User.UserBuilder("89188704358", "lalalalol3395527").withMessageIds(new ArrayList<>(Arrays.asList(messageId1, messageId2, messageId3))).build();
 
     @BeforeEach
     public void llogin(){
